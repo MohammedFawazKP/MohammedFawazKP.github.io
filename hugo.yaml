@@ -58,7 +58,6 @@ enableEmoji: true
 
 # Site parameters
 params:
-  # Background video of the landing page
   background:
     video: "images/hero-bg.mp4"
 
