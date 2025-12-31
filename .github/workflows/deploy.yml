@@ -11,9 +11,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          submodules: true
-          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -22,7 +19,10 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo --minify
+        run: |
+          hugo mod init github.com/MohammedFawazKP/MohammedFawazKP.github.io
+          hugo mod get github.com/hugo-toha/toha/v4
+          hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
