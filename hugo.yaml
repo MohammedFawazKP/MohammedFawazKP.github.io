@@ -58,6 +58,7 @@ enableEmoji: true
 
 # Site parameters
 params:
+  greeting: "Hi, I'm Mohammed Fawaz"
   background:
     video: "images/hero-bg.mp4"
 
