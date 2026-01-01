@@ -15,10 +15,16 @@ module:
     - source: layouts
       target: layouts
 
+# Allow raw html (fixing that Warning you saw in the log)
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+
 params:
   greeting: "Hi, I'm Mohammed Fawaz"
-  background:
-    video: "images/hero-bg.mp4"
+  # This matches the theme's template expectation
+  background: "images/hero-bg.mp4"
 
   footer:
     enable: true
