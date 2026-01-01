@@ -27,7 +27,7 @@ jobs:
       - name: Build
         run: |
           test -f go.mod || hugo mod init github.com/MohammedFawazKP/MohammedFawazKP.github.io
-          hugo mod get github.com/hugo-toha/toha/v4
+          hugo mod tidy
           hugo --minify
 
       - name: Deploy
