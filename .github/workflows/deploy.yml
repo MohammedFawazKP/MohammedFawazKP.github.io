@@ -20,11 +20,14 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
+      - name: Install Dependencies
+        run: |
+          npm install -D postcss postcss-cli autoprefixer
+
       - name: Build
         run: |
-          # This creates the 'ID card' Hugo is looking for
-          hugo mod init github.com/MohammedFawazKP/MohammedFawazKP.github.io || true
-          hugo mod tidy
+          test -f go.mod || hugo mod init github.com/MohammedFawazKP/MohammedFawazKP.github.io
+          hugo mod get github.com/hugo-toha/toha/v4
           hugo --minify
 
       - name: Deploy
