@@ -1,7 +1,7 @@
 baseURL: "https://mohammedfawaz.com/"
 languageCode: en
 title: "Mohammed Fawaz"
-theme: ["github.com/hugo-toha/toha/v4"]
+theme: github.com/hugo-toha/toha/v4
 
 params:
   greeting: "Hi, I'm Mohammed Fawaz"
