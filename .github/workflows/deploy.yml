@@ -15,11 +15,13 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          hugo-version: '0.140.0' # A very stable version for Toha v4
           extended: true
 
       - name: Build
         run: |
+          # If go.mod doesn't exist, create it
+          test -f go.mod || hugo mod init github.com/MohammedFawazKP/MohammedFawazKP.github.io
           hugo mod get github.com/hugo-toha/toha/v4
           hugo --minify
 
