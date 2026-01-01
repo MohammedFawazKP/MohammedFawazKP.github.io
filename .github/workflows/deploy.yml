@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout Site
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
@@ -18,13 +20,12 @@ jobs:
           hugo-version: 'latest'
           extended: true
 
-      - name: Manually Get Theme
-        run: |
-          mkdir -p themes
-          git clone --depth 1 https://github.com/hugo-toha/toha.git themes/toha
-
       - name: Build
-        run: hugo --minify --theme toha
+        run: |
+          # This creates the 'ID card' Hugo is looking for
+          hugo mod init github.com/MohammedFawazKP/MohammedFawazKP.github.io || true
+          hugo mod tidy
+          hugo --minify
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v4
