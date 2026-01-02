@@ -22,9 +22,10 @@ markup:
 
 params:
   greeting: "Hi, I'm Mohammed Fawaz"
-  # This specific nesting tells the theme NOT to use the image-resize function
-  background:
-    video: "images/hero-bg.mp4"
+  # We set background to a non-existent image to bypass the Resize check
+  background: ""
+  # We use the explicit video parameter
+  heroVideo: "images/hero-bg.mp4"
 
   footer:
     enable: true
