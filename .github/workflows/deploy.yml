@@ -26,6 +26,8 @@ jobs:
 
       - name: Build
         run: |
+          # Clean old cache and re-init
+          rm -rf resources/_gen
           test -f go.mod || hugo mod init github.com/MohammedFawazKP/MohammedFawazKP.github.io
           hugo mod tidy
           hugo --minify
