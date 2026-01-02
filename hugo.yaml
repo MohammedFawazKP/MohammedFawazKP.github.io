@@ -15,7 +15,6 @@ module:
     - source: layouts
       target: layouts
 
-# Allow raw html (fixing that Warning you saw in the log)
 markup:
   goldmark:
     renderer:
@@ -23,8 +22,9 @@ markup:
 
 params:
   greeting: "Hi, I'm Mohammed Fawaz"
-  # This matches the theme's template expectation
-  background: "images/hero-bg.mp4"
+  # This specific nesting tells the theme NOT to use the image-resize function
+  background:
+    video: "images/hero-bg.mp4"
 
   footer:
     enable: true
