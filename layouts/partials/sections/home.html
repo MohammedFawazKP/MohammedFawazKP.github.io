@@ -1,35 +1,47 @@
 <section id="home" class="header">
+  {{ $video := resources.Get "images/hero-bg.mp4" }}
   <div class="container-fluid transition-parent">
-    <video autoplay muted loop id="hero-video" class="bg-video">
-      <source src="{{ "images/hero-bg.mp4" | relURL }}" type="video/mp4">
+    {{ if $video }}
+    <video autoplay muted loop playsinline id="hero-video" class="bg-video">
+      <source src="{{ $video.RelPermalink }}" type="video/mp4">
     </video>
+    {{ end }}
 
     <div class="row header-content">
       <div class="col-md-12 text-center">
-        <h1 class="header-title">{{ .Site.Params.greeting }}</h1>
-        {{ with .Site.Params.description }}
-        <p class="header-description">{{ . }}</p>
-        {{ end }}
+        <h1 class="header-title" style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
+          {{ .Site.Params.greeting }}
+        </h1>
       </div>
     </div>
   </div>
 </section>
 
 <style>
-  .bg-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-  }
   .header {
     position: relative;
+    height: 100vh;
+    width: 100%;
     overflow: hidden;
-    min-height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
+    background-color: #222; /* Fallback color while video loads */
+  }
+  .bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    transform: translateX(-50%) translateY(-50%);
+    object-fit: cover;
+  }
+  .header-content {
+    z-index: 1;
+    position: relative;
   }
 </style>
