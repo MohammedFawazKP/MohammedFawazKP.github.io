@@ -1,0 +1,35 @@
+<section id="home" class="header">
+  <div class="container-fluid transition-parent">
+    <video autoplay muted loop id="hero-video" class="bg-video">
+      <source src="{{ "images/hero-bg.mp4" | relURL }}" type="video/mp4">
+    </video>
+
+    <div class="row header-content">
+      <div class="col-md-12 text-center">
+        <h1 class="header-title">{{ .Site.Params.greeting }}</h1>
+        {{ with .Site.Params.description }}
+        <p class="header-description">{{ . }}</p>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bg-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  .header {
+    position: relative;
+    overflow: hidden;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+  }
+</style>
