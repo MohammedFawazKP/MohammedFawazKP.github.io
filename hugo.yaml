@@ -22,10 +22,8 @@ markup:
 
 params:
   greeting: "Hi, I'm Mohammed Fawaz"
-  # We set background to a non-existent image to bypass the Resize check
   background: ""
-  # We use the explicit video parameter
-  heroVideo: "images/hero-bg.mp4"
+  # You can keep this or remove it, our new home.html points directly to the file
 
   footer:
     enable: true
