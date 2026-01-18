@@ -37,3 +37,5 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          # This line stops GitHub from removing your domain
+          cname: mohammedfawaz.com
