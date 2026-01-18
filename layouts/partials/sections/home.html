@@ -1,85 +1,85 @@
-<section id="home" class="header">
+<section id="home" class="header-custom">
   {{ $video := resources.Get "images/hero-bg.mp4" }}
-  <div class="video-wrapper">
+  
+  <div class="video-container-custom">
     {{ if $video }}
     <video autoplay muted loop playsinline class="bg-video-nocrop">
       <source src="{{ $video.RelPermalink }}" type="video/mp4">
     </video>
     {{ end }}
     
-    <div class="video-overlay"></div>
+    <div class="video-overlay-custom"></div>
   </div>
 
-  <div class="container header-content">
-    <h1 class="header-title">{{ .Site.Params.greeting }}</h1>
+  <div class="container header-content-custom">
+    <h1 class="header-title-custom">{{ .Site.Params.greeting }}</h1>
   </div>
 </section>
 
 <style>
-  .header {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    background-color: #0b0b0b; /* Deep black to match video bars */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
+  /* 1. Reset the section to be deep black and full screen */
+  .header-custom {
+    position: relative !important;
+    height: 100vh !important;
+    width: 100% !important;
+    background-color: #000000 !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
   }
 
-  .video-wrapper {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  /* 2. Create the container for the video */
+  .video-container-custom {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    z-index: 1 !important;
   }
 
+  /* 3. THE FIX: object-fit: contain ensures NO cropping */
   .bg-video-nocrop {
-    /* This is the magic part: no cropping */
-    max-width: 100%;
-    max-height: 100%;
-    width: auto;
-    height: auto;
-    z-index: 1;
-    /* Keeps the 720p edges as sharp as possible */
-    image-rendering: -webkit-optimize-contrast;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important; /* This stops the cropping */
+    background-color: #000000 !important;
   }
 
-  .video-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-    /* Dimmer + Dot Texture to hide the 720p pixels */
-    background: rgba(0, 0, 0, 0.2); 
-    background-image: url('https://www.transparenttextures.com/patterns/dot-noise.png');
-    pointer-events: none;
+  /* 4. The Overlay Layer */
+  .video-overlay-custom {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: rgba(0, 0, 0, 0.3) !important; /* Dims video for readability */
+    background-image: url('https://www.transparenttextures.com/patterns/dot-noise.png') !important;
+    z-index: 2 !important;
+    pointer-events: none !important;
   }
 
-  .header-content {
-    z-index: 3;
-    text-align: center;
-    color: white;
-    /* Makes text readable over any video frame */
-    text-shadow: 0px 0px 15px rgba(0,0,0,0.9), 0px 0px 5px rgba(0,0,0,0.5);
+  /* 5. The Greeting Text */
+  .header-content-custom {
+    position: relative !important;
+    z-index: 3 !important;
+    text-align: center !important;
+    color: #ffffff !important;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.8) !important;
   }
 
-  .header-title {
-    font-size: 3.5rem;
-    font-weight: 700;
+  .header-title-custom {
+    font-size: 3.5rem !important;
+    font-weight: 700 !important;
   }
 
-  /* Mobile adjustment for the text size */
   @media (max-width: 768px) {
-    .header-title {
-      font-size: 2rem;
-      padding: 0 20px;
+    .header-title-custom {
+      font-size: 2.2rem !important;
     }
   }
 </style>
