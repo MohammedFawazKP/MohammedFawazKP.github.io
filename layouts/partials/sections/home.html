@@ -1,19 +1,17 @@
 <section id="home" class="header">
   {{ $video := resources.Get "images/hero-bg.mp4" }}
-  <div class="container-fluid transition-parent">
+  <div class="video-wrapper">
     {{ if $video }}
-    <video autoplay muted loop playsinline id="hero-video" class="bg-video">
+    <video autoplay muted loop playsinline class="bg-video-nocrop">
       <source src="{{ $video.RelPermalink }}" type="video/mp4">
     </video>
     {{ end }}
+    
+    <div class="video-overlay"></div>
+  </div>
 
-    <div class="row header-content">
-      <div class="col-md-12 text-center">
-        <h1 class="header-title" style="color: white; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-          {{ .Site.Params.greeting }}
-        </h1>
-      </div>
-    </div>
+  <div class="container header-content">
+    <h1 class="header-title">{{ .Site.Params.greeting }}</h1>
   </div>
 </section>
 
@@ -22,26 +20,66 @@
     position: relative;
     height: 100vh;
     width: 100%;
-    overflow: hidden;
+    background-color: #0b0b0b; /* Deep black to match video bars */
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #222; /* Fallback color while video loads */
+    overflow: hidden;
   }
-  .bg-video {
+
+  .video-wrapper {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .bg-video-nocrop {
+    /* This is the magic part: no cropping */
+    max-width: 100%;
+    max-height: 100%;
     width: auto;
     height: auto;
-    z-index: 0;
-    transform: translateX(-50%) translateY(-50%);
-    object-fit: cover;
-  }
-  .header-content {
     z-index: 1;
-    position: relative;
+    /* Keeps the 720p edges as sharp as possible */
+    image-rendering: -webkit-optimize-contrast;
+  }
+
+  .video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    /* Dimmer + Dot Texture to hide the 720p pixels */
+    background: rgba(0, 0, 0, 0.2); 
+    background-image: url('https://www.transparenttextures.com/patterns/dot-noise.png');
+    pointer-events: none;
+  }
+
+  .header-content {
+    z-index: 3;
+    text-align: center;
+    color: white;
+    /* Makes text readable over any video frame */
+    text-shadow: 0px 0px 15px rgba(0,0,0,0.9), 0px 0px 5px rgba(0,0,0,0.5);
+  }
+
+  .header-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+
+  /* Mobile adjustment for the text size */
+  @media (max-width: 768px) {
+    .header-title {
+      font-size: 2rem;
+      padding: 0 20px;
+    }
   }
 </style>
